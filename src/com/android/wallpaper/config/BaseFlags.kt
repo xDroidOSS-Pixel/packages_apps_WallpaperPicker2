@@ -34,11 +34,7 @@ abstract class BaseFlags {
             ?.value == true
     }
     fun isUseRevampedUiEnabled(context: Context): Boolean {
-        return runBlocking { getCustomizationProviderClient(context).queryFlags() }
-            .firstOrNull { flag ->
-                flag.name == Contract.FlagsTable.FLAG_NAME_REVAMPED_WALLPAPER_UI
-            }
-            ?.value == true
+        return false
     }
     fun isCustomClocksEnabled(context: Context): Boolean {
         return runBlocking { getCustomizationProviderClient(context).queryFlags() }

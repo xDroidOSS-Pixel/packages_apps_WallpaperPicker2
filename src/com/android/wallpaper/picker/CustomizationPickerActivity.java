@@ -43,8 +43,6 @@ import com.android.wallpaper.model.WallpaperPreviewNavigator;
 import com.android.wallpaper.module.DailyLoggingAlarmScheduler;
 import com.android.wallpaper.module.Injector;
 import com.android.wallpaper.module.InjectorProvider;
-import com.android.wallpaper.module.LargeScreenMultiPanesChecker;
-import com.android.wallpaper.module.MultiPanesChecker;
 import com.android.wallpaper.module.NetworkStatusNotifier;
 import com.android.wallpaper.module.NetworkStatusNotifier.NetworkStatus;
 import com.android.wallpaper.module.UserEventLogger;
@@ -90,18 +88,6 @@ public class CustomizationPickerActivity extends FragmentActivity implements App
 
         // Restore this Activity's state before restoring contained Fragments state.
         super.onCreate(savedInstanceState);
-        // Trampoline for the two panes
-        final MultiPanesChecker mMultiPanesChecker = new LargeScreenMultiPanesChecker();
-        if (mMultiPanesChecker.isMultiPanesEnabled(this)) {
-            Intent intent = getIntent();
-            if (!ActivityUtils.isLaunchedFromSettingsTrampoline(intent)
-                    && !ActivityUtils.isLaunchedFromSettingsRelated(intent)) {
-                startActivityForResultSafely(this,
-                        mMultiPanesChecker.getMultiPanesIntent(intent), /* requestCode= */ 0);
-                finish();
-            }
-        }
-
         setContentView(R.layout.activity_customization_picker);
         mBottomActionBar = findViewById(R.id.bottom_actionbar);
 
