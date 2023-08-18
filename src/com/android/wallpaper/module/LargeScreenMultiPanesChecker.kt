@@ -29,12 +29,7 @@ class LargeScreenMultiPanesChecker : MultiPanesChecker {
     }
 
     override fun isMultiPanesEnabled(context: Context): Boolean {
-        val pm = context.packageManager
-        val intent =
-            getMultiPanesIntent(Intent(ACTION_SET_WALLPAPER).setPackage(context.packageName))
-
-        val resolveInfo = pm.resolveActivity(intent, MATCH_DEFAULT_ONLY)?.activityInfo?.enabled
-        return resolveInfo != null
+        return false
     }
 
     override fun getMultiPanesIntent(intent: Intent): Intent {
